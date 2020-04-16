@@ -62,6 +62,15 @@ module OmniAuth
       def callback_url
         full_host + script_name + callback_path
       end
+      
+      def full_host #https://github.com/omniauth/omniauth/issues/101
+        uri = URI.parse(request.url)
+        uri.path = ''
+        uri.query = nil
+        uri.port = (uri.scheme == 'https' ? 443 : 80)
+        uri.to_s
+      end
+
 
       def raw_info
         # it's all here in JWT http://msdn.microsoft.com/en-us/library/azure/dn195587.aspx

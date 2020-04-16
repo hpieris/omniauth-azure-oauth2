@@ -67,7 +67,7 @@ module OmniAuth
         uri = URI.parse(request.url)
         uri.path = ''
         uri.query = nil
-        uri.port = (uri.scheme == 'https' ? 443 : 80)
+        uri.port = (uri.scheme == 'https' ? 443 : 3000)
         uri.to_s
       end
 

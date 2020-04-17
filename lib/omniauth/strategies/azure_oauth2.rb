@@ -67,7 +67,11 @@ module OmniAuth
         uri = URI.parse(request.url)
         uri.path = ''
         uri.query = nil
-        uri.port = (uri.scheme == 'https' ? 3000 : 3000)
+        if Rails.env.production?
+          uri.port = (uri.scheme == 'https' ? 443 : 80)
+        else
+          uri.port = 3000
+        end
         uri.to_s
       end
 
